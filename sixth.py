@@ -6,18 +6,24 @@ class StarMap:
             self.graph[orbiting] = []
         self.graph[orbiting].append(stuff)
 
+    def _sum_orbits(self, orbiting_bodies):
+        sum = 0
+        for orbiting_body in orbiting_bodies:
+            if orbiting_body is not None:
+                sum += 1
+        return sum
+
     def get_direct_orbits(self):
         sum = 0
         for orbiting_bodies in self.graph.values():
-            for orbiting_body in orbiting_bodies:
-                if orbiting_body is not None:
-                    sum += 1
+            sum += self._sum_orbits(orbiting_bodies)
         return sum
 
     def get_indirect_paths(self):
         sum = 0
         for key, orbiting_bodies in self.graph.items():
-            sum
+            sum += self._sum_orbits(orbiting_bodies)
+
 
     def __str__(self):
         orbits = ""
